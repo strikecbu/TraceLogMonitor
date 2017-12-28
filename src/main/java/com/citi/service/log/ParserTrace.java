@@ -1,4 +1,4 @@
-package com.citi.log;
+package com.citi.service.log;
 
 import java.io.BufferedReader;
 import java.io.File;
