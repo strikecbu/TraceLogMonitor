@@ -16,12 +16,6 @@ public class ParserTrace {
     public static final String START_TIME = "time";
     public static final String PENDING_TIME = "duration";
 
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        ParserTrace p = new ParserTrace();
-        p.dumpWebContainer();
-    }
-
     public Map<String, Map<String, String>> dumpWebContainer(String folderPath) {
         Map<String, Map<String, String>> error = new TreeMap<String, Map<String, String>>();
 //        String path = "/Volumes/RamDisk/server1/INC0046565396(5)";
