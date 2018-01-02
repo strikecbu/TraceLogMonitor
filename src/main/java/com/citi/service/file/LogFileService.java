@@ -1,8 +1,10 @@
 package com.citi.service.file;
 
+import com.citi.model.PendingLog;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -10,4 +12,8 @@ import java.util.regex.Pattern;
  */
 public interface LogFileService {
     void snapShotTargetFile(File folder, File targetFolder, Pattern pattern) throws IOException;
+
+    List<PendingLog> scaningLog();
+
+    void copyIssueLog(String issueFolderName) throws IOException;
 }
