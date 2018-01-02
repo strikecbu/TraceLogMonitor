@@ -152,6 +152,7 @@ public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
               .append(NEXT_LINE)
               .append("pending time: ")
               .append(pendingLog.getInuseSec())
+              .append(" seconds")
               .append(NEXT_LINE);
     }
     return stringBuilder.toString();

@@ -6,6 +6,7 @@ import com.citi.service.email.impl.CCSimpleEmailServiceImpl;
 import com.citi.service.file.LogFileService;
 import com.citi.service.file.impl.LogFileServiceImpl;
 import com.citi.service.log.ParserTrace;
+import com.citi.util.CapString;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -63,6 +64,8 @@ public class App {
         String mailTitle = "COLA server over pending warning";
         logger.debug("sending notify mail...");
         for(String target : emailTargets.split(",")){
+            if(CapString.isEmpty(target))
+                continue;
             logger.debug("sending mail to : " + target);
             try{
                 emailService.processEMail(target, mailTitle, message);
