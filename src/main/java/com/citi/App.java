@@ -26,21 +26,25 @@ public class App {
 
     private LogFileService logFileService;
 
-    private ParserTrace parserTrace;
-
     private CCSimpleEmailService emailService;
 
     public static void main(String[] args) throws IOException {
-        URL resource = Thread.currentThread().getContextClassLoader().getResource("config.properties");
-
-        prop.load(new InputStreamReader(resource.openStream(),"UTF-8"));
-//        prop.load(resource.openStream());
         logger.debug("monitor start ...");
         //testing
         App testObj = new App();
-        testObj.setLogFileService(new LogFileServiceImpl(prop, new ParserTrace()));
-        testObj.setEmailService(new CCSimpleEmailServiceImpl(prop));
         testObj.scanProcess();
+    }
+
+    public App(){
+        URL resource = Thread.currentThread().getContextClassLoader().getResource("config.properties");
+        try {
+            prop.load(new InputStreamReader(resource.openStream(),"UTF-8"));
+        } catch (IOException e) {
+            logger.error("can not read config.properties!", e);
+            e.printStackTrace();
+        }
+        this.emailService = new CCSimpleEmailServiceImpl(prop);
+        this.logFileService = new LogFileServiceImpl(prop, new ParserTrace());
     }
 
     private void scanProcess() throws IOException {
@@ -75,31 +79,5 @@ public class App {
             }
         }
         logger.debug("sending notify mail complete!");
-    }
-
-
-
-    public LogFileService getLogFileService() {
-        return logFileService;
-    }
-
-    public void setLogFileService(LogFileService logFileService) {
-        this.logFileService = logFileService;
-    }
-
-    public ParserTrace getParserTrace() {
-        return parserTrace;
-    }
-
-    public void setParserTrace(ParserTrace parserTrace) {
-        this.parserTrace = parserTrace;
-    }
-
-    public CCSimpleEmailService getEmailService() {
-        return emailService;
-    }
-
-    public void setEmailService(CCSimpleEmailService emailService) {
-        this.emailService = emailService;
     }
 }
