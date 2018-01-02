@@ -1,6 +1,8 @@
 package com.citi.service.email.impl;
 
 
+import com.citi.Constants;
+import com.citi.model.PendingLog;
 import com.citi.service.email.CCSimpleEmailService;
 import com.citi.util.CapString;
 import org.apache.log4j.Logger;
@@ -12,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
 public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
@@ -29,12 +32,12 @@ public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
     try {
 //      sysProp.remove("EDM_CHARSET");
 //      sysProp.remove("EDM_SUBJECT");
-      final String FROM_ADDRESS = sysProp.getProperty("EDM_FROM_ADDR");  //"gverdsii@gmail.com";
-      final String FROM_PERSON = sysProp.getProperty("EDM_FROM_PERSON");  //"花旗（台灣）銀行";
-      final String EDM_HOST = sysProp.getProperty("EDM_HOST");
-      final String EDM_USR = sysProp.getProperty("EDM_USR");
-      final String EDM_PWD = sysProp.getProperty("EDM_PWD");
-      final String LOCAL_TEST = sysProp.getProperty("LOCAL_TEST");
+      final String FROM_ADDRESS = sysProp.getProperty(Constants.EDM_FROM_ADDR);  //"gverdsii@gmail.com";
+      final String FROM_PERSON = sysProp.getProperty(Constants.EDM_FROM_PERSON);  //"花旗（台灣）銀行";
+      final String EDM_HOST = sysProp.getProperty(Constants.EDM_HOST);
+      final String EDM_USR = sysProp.getProperty(Constants.EDM_USR);
+      final String EDM_PWD = sysProp.getProperty(Constants.EDM_PWD);
+      final String LOCAL_TEST = sysProp.getProperty(Constants.LOCAL_TEST);
       final boolean isLocalTest = "true".equalsIgnoreCase(LOCAL_TEST);
 
       // [COLA] Cycle Date Import Notification
@@ -128,5 +131,29 @@ public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
     }
 
     return true;
+  }
+
+  @Override
+  public String getMessageContent(List<PendingLog> pendingLogs){
+    if(pendingLogs.size() <= 0)
+      return "";
+    final String NEXT_LINE = "\n";
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("Warning!! Server pending is over allow!!");
+    stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
+    String issueFolderName = pendingLogs.get(0).getIssueLogFolderName();
+    stringBuilder.append("issue folder name: ").append(issueFolderName);
+    stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
+
+    stringBuilder.append("<< Pending Classes >>").append(NEXT_LINE);
+    for(PendingLog pendingLog : pendingLogs){
+      stringBuilder
+              .append(pendingLog.getPendingClass())
+              .append(NEXT_LINE)
+              .append("pending time: ")
+              .append(pendingLog.getInuseSec())
+              .append(NEXT_LINE);
+    }
+    return stringBuilder.toString();
   }
 }

@@ -1,21 +1,46 @@
 package com.citi.service.file.impl;
 
+import com.citi.Constants;
+import com.citi.model.PendingLog;
 import com.citi.service.file.LogFileService;
+import com.citi.service.log.ParserTrace;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 /**
  * Created by VALLA on 2017/12/28.
  */
 public class LogFileServiceImpl implements LogFileService {
 
+
     private final static Logger logger = Logger.getLogger(LogFileServiceImpl.class);
+
+    private Properties prop;
+
+    private ParserTrace parserTrace;
+
+    private String folderPath;
+
+    private String tempFolderPath;
+
+    private String issueLogFolderPath;
+
+    public LogFileServiceImpl(Properties prop, ParserTrace parserTrace){
+        this.prop = prop;
+        this.parserTrace = parserTrace;
+        this.folderPath = prop.getProperty(Constants.LOG_FOLDER_PATH);
+        this.tempFolderPath = prop.getProperty(Constants.TEMP_FOLDER_PATH);
+        this.issueLogFolderPath = prop.getProperty(Constants.ISSUE_LOG_FOLDER_PATH);
+    }
 
     @Override
     public void snapShotTargetFile(File folder, File targetFolder, Pattern pattern) throws IOException {
@@ -27,21 +52,26 @@ public class LogFileServiceImpl implements LogFileService {
 
         if(!targetFolder.exists()){
             targetFolder.mkdirs();
+        } else {
+            FileUtils.cleanDirectory(targetFolder);
         }
 
-        logger.debug("[snapShotTargetFile] file checking...");
+        logger.debug("file checking...");
         for(File file : folder.listFiles()){
             String fileName = file.getName();
             Matcher matcher = pattern.matcher(fileName);
             if(matcher.find()){
-                logger.debug("[snapShotTargetFile] select file: " + fileName);
+                logger.debug("select file: " + fileName);
                 try {
                     FileUtils.copyFileToDirectory(file, targetFolder);
                 } catch (IOException e){
-                    logger.debug("[snapShotTargetFile] select file is not available copy! pass it.");
+                    logger.debug("select file is not available copy! pass it.");
                 }
             }
         }
+        logger.debug("[snapShotTargetFile] file checking complete!");
+    }
+
     @Override
     public List<PendingLog> scaningLog(){
         //TODO 檢查資料夾
@@ -77,4 +107,33 @@ public class LogFileServiceImpl implements LogFileService {
 
         return pendings;
     }
+
+    @Override
+    public void copyIssueLog(String issueFolderName) throws IOException {
+        File tempFolder = new File(this.tempFolderPath);
+        String issueLogFolderPath = this.issueLogFolderPath;
+        issueLogFolderPath = issueLogFolderPath.concat(issueFolderName).concat(File.separator);
+        File issueLogFolder = new File(issueLogFolderPath);
+        logger.debug("now copy temp dir files...");
+        if(!issueLogFolder.exists()){
+            logger.debug("create new folder...");
+            FileUtils.forceMkdir(issueLogFolder);
+        }
+
+        FileUtils.copyDirectory(tempFolder, issueLogFolder);
+        logger.debug("copy temp dir files complete !");
+    }
+
+    private String getFilePattern(){
+        //ex: trace_17.10.11_11.29.06.log
+        String result = "";
+        String baseStr = "trace_";
+        Calendar calendar = Calendar.getInstance();
+        String yearStr = String.valueOf(calendar.get(Calendar.YEAR));
+        yearStr = yearStr.substring(2);
+
+        result = result.concat("^").concat(baseStr).concat(yearStr).concat(".*").concat(".log$");
+        return result;
+    }
+
 }

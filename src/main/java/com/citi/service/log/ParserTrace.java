@@ -12,7 +12,9 @@ import java.util.TreeMap;
 
 public class ParserTrace {
 
-    private Map<String, Map<String, String>> error = new TreeMap<String, Map<String, String>>();
+    public static final String CLASS_NAME = "nearest";
+    public static final String START_TIME = "time";
+    public static final String PENDING_TIME = "duration";
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
@@ -20,9 +22,10 @@ public class ParserTrace {
         p.dumpWebContainer();
     }
 
-    private void dumpWebContainer() {
+    public Map<String, Map<String, String>> dumpWebContainer(String folderPath) {
+        Map<String, Map<String, String>> error = new TreeMap<String, Map<String, String>>();
 //        String path = "/Volumes/RamDisk/server1/INC0046565396(5)";
-        String path = "/Users/VALLA/Downloads/INC0046565396(5)";
+        String path = folderPath;
         File logPath = new File(path);
         File[] logFiles = logPath.listFiles();
         FileInputStream fis = null;
@@ -85,5 +88,6 @@ public class ParserTrace {
             Map<String, String> info = e.getValue();
             System.out.println(e.getKey() + "," + info.get("name") + "," + info.get("state") + "," + info.get("nearest") + "," + info.get("time") + "," + info.get("duration"));
         }
+        return error;
     }
 }
