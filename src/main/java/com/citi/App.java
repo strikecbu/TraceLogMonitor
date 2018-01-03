@@ -8,6 +8,8 @@ import com.citi.service.file.impl.LogFileServiceImpl;
 import com.citi.service.log.ParserTrace;
 import org.apache.log4j.Logger;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -35,13 +37,7 @@ public class App implements Runnable{
     }
 
     public App(){
-        URL resource = Thread.currentThread().getContextClassLoader().getResource("config.properties");
-        try {
-            prop.load(new InputStreamReader(resource.openStream(),"UTF-8"));
-        } catch (IOException e) {
-            logger.error("can not read config.properties!", e);
-            e.printStackTrace();
-        }
+        this.loadProperties();
         this.emailService = new EmailServiceImpl(prop);
         this.logFileService = new LogFileServiceImpl(prop);
     }
@@ -79,6 +75,28 @@ public class App implements Runnable{
             logFileService.copyIssueLog(issueLogFolderName);
             //TODO send notify
             emailService.sendEmailNotify(pendingLogs);
+        }
+    }
+
+    private void loadProperties(){
+        File jarUse = new File("./config.properties");
+        if(jarUse.exists()){
+            logger.debug("loading prod properties...");
+            try {
+                this.prop.load(new InputStreamReader(new FileInputStream(jarUse),"UTF-8"));
+                logger.debug("loading prod success!");
+                return;
+            } catch (IOException e) {
+                logger.error("can not read config.properties in Prod!", e);
+                e.printStackTrace();
+            }
+        }
+        URL resource = Thread.currentThread().getContextClassLoader().getResource("config.properties");
+        try {
+            this.prop.load(new InputStreamReader(resource.openStream(),"UTF-8"));
+        } catch (IOException e) {
+            logger.error("can not read config.properties!", e);
+            e.printStackTrace();
         }
     }
 
