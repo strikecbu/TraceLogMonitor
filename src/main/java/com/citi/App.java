@@ -1,12 +1,11 @@
 package com.citi;
 
 import com.citi.model.PendingLog;
-import com.citi.service.email.CCSimpleEmailService;
-import com.citi.service.email.impl.CCSimpleEmailServiceImpl;
+import com.citi.service.email.EmailService;
+import com.citi.service.email.impl.EmailServiceImpl;
 import com.citi.service.file.LogFileService;
 import com.citi.service.file.impl.LogFileServiceImpl;
 import com.citi.service.log.ParserTrace;
-import com.citi.util.CapString;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -58,26 +57,8 @@ public class App {
             String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
             logFileService.copyIssueLog(issueLogFolderName);
             //TODO send notify
-            this.sendEmailNotify(pendingLogs);
+            emailService.sendEmailNotify(pendingLogs);
         }
     }
 
-    private void sendEmailNotify(List<PendingLog> pendingLogs){
-        String message = emailService.getMessageContent(pendingLogs);
-        String emailTargets = prop.getProperty(Constants.EMAIL_SEND_TARGETS);
-        String mailTitle = "COLA server over pending warning";
-        logger.debug("sending notify mail...");
-        for(String target : emailTargets.split(",")){
-            if(CapString.isEmpty(target))
-                continue;
-            logger.debug("sending mail to : " + target);
-            try{
-                emailService.processEMail(target, mailTitle, message);
-            } catch (Exception e){
-                logger.error("sending mail to : " + target + " fail!");
-                logger.error("reason : " + e);
-            }
-        }
-        logger.debug("sending notify mail complete!");
-    }
 }

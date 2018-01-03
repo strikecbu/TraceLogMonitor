@@ -6,6 +6,4 @@ import java.util.List;
 
 public interface CCSimpleEmailService {
   boolean processEMail(String recipient, String subject, String message);
-
-  String getMessageContent(List<PendingLog> pendingLogs);
 }

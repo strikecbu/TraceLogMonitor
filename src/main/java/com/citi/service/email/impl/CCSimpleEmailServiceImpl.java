@@ -133,28 +133,4 @@ public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
     return true;
   }
 
-  @Override
-  public String getMessageContent(List<PendingLog> pendingLogs){
-    if(pendingLogs.size() <= 0)
-      return "";
-    final String NEXT_LINE = "\n";
-    StringBuilder stringBuilder = new StringBuilder();
-    stringBuilder.append("Warning!! Server pending is over allow!!");
-    stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
-    String issueFolderName = pendingLogs.get(0).getIssueLogFolderName();
-    stringBuilder.append("issue folder name: ").append(issueFolderName);
-    stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
-
-    stringBuilder.append("<< Pending Classes >>").append(NEXT_LINE);
-    for(PendingLog pendingLog : pendingLogs){
-      stringBuilder
-              .append(pendingLog.getPendingClass())
-              .append(NEXT_LINE)
-              .append("pending time: ")
-              .append(pendingLog.getInuseSec())
-              .append(" seconds")
-              .append(NEXT_LINE);
-    }
-    return stringBuilder.toString();
-  }
 }
