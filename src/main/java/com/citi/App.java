@@ -43,7 +43,7 @@ public class App implements Runnable{
             e.printStackTrace();
         }
         this.emailService = new EmailServiceImpl(prop);
-        this.logFileService = new LogFileServiceImpl(prop, new ParserTrace());
+        this.logFileService = new LogFileServiceImpl(prop);
     }
 
     @Override

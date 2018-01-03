@@ -24,8 +24,6 @@ public class LogFileServiceImpl implements LogFileService {
 
     private final static Logger logger = Logger.getLogger(LogFileServiceImpl.class);
 
-    private Properties prop;
-
     private ParserTrace parserTrace;
 
     private String folderPath;
@@ -34,9 +32,8 @@ public class LogFileServiceImpl implements LogFileService {
 
     private String issueLogFolderPath;
 
-    public LogFileServiceImpl(Properties prop, ParserTrace parserTrace){
-        this.prop = prop;
-        this.parserTrace = parserTrace;
+    public LogFileServiceImpl(Properties prop){
+        this.parserTrace = new ParserTrace();
         this.folderPath = prop.getProperty(Constants.LOG_FOLDER_PATH);
         this.tempFolderPath = prop.getProperty(Constants.TEMP_FOLDER_PATH);
         this.issueLogFolderPath = prop.getProperty(Constants.ISSUE_LOG_FOLDER_PATH);
@@ -74,26 +71,23 @@ public class LogFileServiceImpl implements LogFileService {
 
     @Override
     public List<PendingLog> scaningLog(){
-        //TODO 檢查資料夾
-        //TODO 將檔名符合的檔案copy到temp
-        String folderPath = prop.getProperty(Constants.LOG_FOLDER_PATH);
-        String tempFolderPath = prop.getProperty(Constants.TEMP_FOLDER_PATH);
-
+        //TODOed 檢查資料夾
+        //TODOed 將檔名符合的檔案copy到temp
         String fileSelectRegStr = this.getFilePattern();
         Pattern pattern = Pattern.compile(fileSelectRegStr);
         try {
-            this.snapShotTargetFile(new File(folderPath), new File(tempFolderPath), pattern);
+            this.snapShotTargetFile(new File(this.folderPath), new File(this.tempFolderPath), pattern);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //TODO 掃描temp -> pending log
+        //TODOed 掃描temp -> pending log
         logger.debug("scanning log file...");
         Map<String, Map<String, String>> scanresult = parserTrace.dumpWebContainer(tempFolderPath);
         List<PendingLog> pendings = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
         String timeStamp = format.format(new Date());
-        //TODO 組裝POJO
+        //TODOed 組裝POJO
         for(String key : scanresult.keySet()){
             Map<String, String> map = scanresult.get(key);
             PendingLog pendingLog = new PendingLog();
