@@ -17,7 +17,7 @@ import java.util.Properties;
 /**
  * Created by VALLA on 2017/12/26.
  */
-public class App {
+public class App implements Runnable{
 
     private static final Logger logger = Logger.getLogger(App.class);
 
@@ -25,13 +25,13 @@ public class App {
 
     private LogFileService logFileService;
 
-    private CCSimpleEmailService emailService;
+    private EmailService emailService;
 
     public static void main(String[] args) throws IOException {
         logger.debug("monitor start ...");
-        //testing
         App testObj = new App();
-        testObj.scanProcess();
+        Thread thread = new Thread(testObj);
+        thread.start();
     }
 
     public App(){
@@ -42,8 +42,29 @@ public class App {
             logger.error("can not read config.properties!", e);
             e.printStackTrace();
         }
-        this.emailService = new CCSimpleEmailServiceImpl(prop);
+        this.emailService = new EmailServiceImpl(prop);
         this.logFileService = new LogFileServiceImpl(prop, new ParserTrace());
+    }
+
+    @Override
+    public void run() {
+        String scanTime = prop.getProperty(Constants.INTERVAL_TIME);
+        try {
+            long mills = Long.parseLong(scanTime) * 60 * 1000;
+            String mailTitle = "COLA server over pending warning";
+            String message = "monitor is on! You are in notify group!";
+            emailService.sendEmailNotify(mailTitle, message);
+            while (true){
+                logger.debug("now start a new scan...");
+                this.scanProcess();
+                logger.debug("all process done!");
+                Thread.sleep(mills);
+            }
+        } catch (Exception e) {
+            logger.error(e);
+            e.printStackTrace();
+        }
+
     }
 
     private void scanProcess() throws IOException {

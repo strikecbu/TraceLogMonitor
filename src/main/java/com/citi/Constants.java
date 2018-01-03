@@ -15,7 +15,9 @@ public interface Constants {
     String EDM_PWD = "EDM_PWD";
 
 //  # Log scan
-//    log path
+    String INTERVAL_TIME = "intervalTime";
+//    scan time
+    //    log path
     String LOG_FOLDER_PATH = "logFolderPath";
     String TEMP_FOLDER_PATH = "tempFolderPath";
     String ISSUE_LOG_FOLDER_PATH = "issueLogFolderPath";
