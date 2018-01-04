@@ -5,16 +5,13 @@ import com.citi.service.email.EmailService;
 import com.citi.service.email.impl.EmailServiceImpl;
 import com.citi.service.file.LogFileService;
 import com.citi.service.file.impl.LogFileServiceImpl;
-import com.citi.service.log.ParserTrace;
 import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.util.List;
 import java.util.Properties;
+
 
 /**
  * Created by VALLA on 2017/12/26.
@@ -47,7 +44,7 @@ public class App implements Runnable{
         String scanTime = prop.getProperty(Constants.INTERVAL_TIME);
         try {
             long mills = Long.parseLong(scanTime) * 60 * 1000;
-            String mailTitle = "COLA server over pending warning";
+            String mailTitle = "COLA server warning system on!";
             String message = "monitor is on! You are in notify group!";
             emailService.sendEmailNotify(mailTitle, message);
             while (true){
@@ -57,10 +54,8 @@ public class App implements Runnable{
                 Thread.sleep(mills);
             }
         } catch (Exception e) {
-            logger.error(e);
-            e.printStackTrace();
+            this.errorProcess(e);
         }
-
     }
 
     private void scanProcess() throws IOException {
@@ -70,10 +65,10 @@ public class App implements Runnable{
         boolean isOverAllow = count > allowLimit;
 
         if(isOverAllow){
-            //TODO 保存該次檔案
+            //TODOed 保存該次檔案
             String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
             logFileService.copyIssueLog(issueLogFolderName);
-            //TODO send notify
+            //TODOed send notify
             emailService.sendEmailNotify(pendingLogs);
         }
     }
@@ -97,6 +92,27 @@ public class App implements Runnable{
         } catch (IOException e) {
             logger.error("can not read config.properties!", e);
             e.printStackTrace();
+        }
+    }
+
+    private void errorProcess(Exception e) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
+        String errorMsg = sw.toString();
+        String message = "monitor was down! See what happened: \n\n";
+        String mailTitle = "COLA server warning system down!";
+        emailService.sendEmailNotify(mailTitle, message.concat(errorMsg));
+        logger.error(errorMsg);
+        try {
+            pw.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        try {
+            sw.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

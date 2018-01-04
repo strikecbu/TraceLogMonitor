@@ -38,6 +38,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--將指定檔案在打包時輸出到特定資料夾-->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.5</version>
