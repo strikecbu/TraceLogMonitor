@@ -70,16 +70,12 @@ public class LogFileServiceImpl implements LogFileService {
     }
 
     @Override
-    public List<PendingLog> scaningLog(){
+    public List<PendingLog> scaningLog() throws IOException {
         //TODOed 檢查資料夾
         //TODOed 將檔名符合的檔案copy到temp
         String fileSelectRegStr = this.getFilePattern();
         Pattern pattern = Pattern.compile(fileSelectRegStr);
-        try {
-            this.snapShotTargetFile(new File(this.folderPath), new File(this.tempFolderPath), pattern);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.snapShotTargetFile(new File(this.folderPath), new File(this.tempFolderPath), pattern);
 
         //TODOed 掃描temp -> pending log
         logger.debug("scanning log file...");

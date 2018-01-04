@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public interface LogFileService {
     void snapShotTargetFile(File folder, File targetFolder, Pattern pattern) throws IOException;
 
-    List<PendingLog> scaningLog();
+    List<PendingLog> scaningLog() throws IOException;
 
     void copyIssueLog(String issueFolderName) throws IOException;
 }
