@@ -50,7 +50,7 @@ public class App implements Runnable{
             while (true){
                 logger.debug("now start a new scan...");
                 this.scanProcess();
-                logger.debug("all process done!");
+                logger.debug("all process done! waiting next...");
                 Thread.sleep(mills);
             }
         } catch (Exception e) {

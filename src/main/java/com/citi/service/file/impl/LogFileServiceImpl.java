@@ -43,9 +43,13 @@ public class LogFileServiceImpl implements LogFileService {
     public void snapShotTargetFile(File folder, File targetFolder, Pattern pattern) throws IOException {
         if(folder == null || targetFolder == null || pattern == null)
             throw new IllegalArgumentException();
-
-        if(!folder.exists())
+       logger.debug("AbsolutePath : " + folder.getAbsolutePath());
+        if(!folder.exists() && !folder.isDirectory())
             throw new FileNotFoundException();
+        if(folder.listFiles().length == 0){
+            logger.debug("no any files in folder...");
+            throw new FileNotFoundException();
+        }
 
         if(!targetFolder.exists()){
             targetFolder.mkdirs();
@@ -75,6 +79,8 @@ public class LogFileServiceImpl implements LogFileService {
         //TODOed 將檔名符合的檔案copy到temp
         String fileSelectRegStr = this.getFilePattern();
         Pattern pattern = Pattern.compile(fileSelectRegStr);
+        logger.debug("folderPath: " + this.folderPath);
+        logger.debug("tempFolderPath: " + this.tempFolderPath);
         this.snapShotTargetFile(new File(this.folderPath), new File(this.tempFolderPath), pattern);
 
         //TODOed 掃描temp -> pending log
