@@ -115,6 +115,7 @@ public class LogFileServiceImpl implements LogFileService {
     }
 
     private String getFilePattern(){
+        //ex: trace.log
         //ex: trace_17.10.11_11.29.06.log
         String result = "";
         String baseStr = "trace_";
@@ -122,7 +123,8 @@ public class LogFileServiceImpl implements LogFileService {
         String yearStr = String.valueOf(calendar.get(Calendar.YEAR));
         yearStr = yearStr.substring(2);
 
-        result = result.concat("^").concat(baseStr).concat(yearStr).concat(".*").concat(".log$");
+        result = result.concat("^").concat(baseStr).concat(yearStr).concat(".*").concat("\\.log$");
+        result = result.concat("|^trace\\.log$");
         return result;
     }
 
