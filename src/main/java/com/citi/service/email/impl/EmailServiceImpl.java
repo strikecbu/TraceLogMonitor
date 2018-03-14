@@ -19,7 +19,7 @@ public class EmailServiceImpl implements EmailService{
 
     private CCSimpleEmailService emailService;
 
-    protected static Logger logger = Logger.getLogger(EmailServiceImpl.class);
+    private static Logger logger = Logger.getLogger(EmailServiceImpl.class);
 
     public EmailServiceImpl(Properties prop){
         this.prop = prop;
