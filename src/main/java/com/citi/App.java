@@ -5,6 +5,8 @@ import com.citi.service.email.EmailService;
 import com.citi.service.email.impl.EmailServiceImpl;
 import com.citi.service.file.LogFileService;
 import com.citi.service.file.impl.LogFileServiceImpl;
+import com.citi.service.sms.SmsService;
+import com.citi.service.sms.impl.SmsServiceImpl;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -26,6 +28,8 @@ public class App implements Runnable{
 
     private EmailService emailService;
 
+    private SmsService smsService;
+
     public static void main(String[] args) throws IOException {
         logger.debug("monitor start ...");
         App testObj = new App();
@@ -37,6 +41,7 @@ public class App implements Runnable{
         this.loadProperties();
         this.emailService = new EmailServiceImpl(prop);
         this.logFileService = new LogFileServiceImpl(prop);
+        this.smsService = new SmsServiceImpl(prop);
     }
 
     @Override
@@ -70,6 +75,8 @@ public class App implements Runnable{
             logFileService.copyIssueLog(issueLogFolderName);
             //TODOed send notify
             emailService.sendEmailNotify(pendingLogs);
+            // send sms notffy
+            smsService.sendSms(pendingLogs);
         }
     }
 

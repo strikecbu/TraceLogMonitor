@@ -24,5 +24,6 @@ public interface Constants {
 //    pendingLimit
     String ALLOW_PENDING_LIMIT = "allowPendingLimit";
     String EMAIL_SEND_TARGETS = "emailSendTargets";
+    String SMS_SEND_TARGETS = "smsSendTargets";
 
 }

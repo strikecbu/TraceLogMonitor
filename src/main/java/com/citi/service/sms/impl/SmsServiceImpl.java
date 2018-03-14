@@ -1,9 +1,13 @@
 package com.citi.service.sms.impl;
 
+import com.citi.Constants;
+import com.citi.model.PendingLog;
 import com.citi.service.sms.OTPService;
 import com.citi.service.sms.SmsService;
 import com.citi.util.CapString;
+import org.apache.log4j.Logger;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,6 +16,8 @@ import java.util.regex.Pattern;
  * Created by VALLA on 2018/1/8.
  */
 public class SmsServiceImpl implements SmsService {
+
+    private static Logger logger = Logger.getLogger(SmsServiceImpl.class);
 
     OTPService otpService;
 
@@ -27,12 +33,31 @@ public class SmsServiceImpl implements SmsService {
      * @param message
      */
     @Override
-    public void SendSms(String phoneNumber, String message) throws Exception {
+    public void sendSms(String phoneNumber, String message) throws Exception {
         phoneNumber = tansPhoneNumber(phoneNumber);
-        if(CapString.isEmpty(phoneNumber))
-            throw new IllegalArgumentException("phoneNumber is illegal");
-
+        if(CapString.isEmpty(phoneNumber)){
+            logger.error("phoneNumber : " + phoneNumber + " is illegal");
+            return;
+        }
         otpService.sendOTPbySMS(phoneNumber, message);
+    }
+
+    @Override
+    public void sendSms(List<PendingLog> pendingLogs) {
+        String smsTargets = prop.getProperty(Constants.SMS_SEND_TARGETS);
+        String message = "COLA server over pending warning! please see more info from email.";
+        for(String target : smsTargets.split(",")){
+            if(CapString.isEmpty(target))
+                continue;
+            logger.debug("sending sms to : " + target);
+            try{
+                this.sendSms(target, message);
+            } catch (Exception e){
+                logger.error("sending sms to : " + target + " fail!");
+                logger.error("reason : " + e);
+            }
+        }
+
     }
 
     private String tansPhoneNumber(String phoneNumber) {
