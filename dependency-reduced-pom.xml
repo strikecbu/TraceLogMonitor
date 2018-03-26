@@ -56,6 +56,21 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptor>src/assembly/sample.xml</descriptor>
+          <finalName>IISI_transLogMonitor_pack-${pom.version}</finalName>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
