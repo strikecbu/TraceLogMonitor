@@ -16,4 +16,6 @@ public interface LogFileService {
     List<PendingLog> scaningLog() throws IOException;
 
     void copyIssueLog(String issueFolderName) throws IOException;
+
+    void cleanIssueLogFolder() throws IOException;
 }

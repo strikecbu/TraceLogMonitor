@@ -72,6 +72,8 @@ public class App implements Runnable{
         if(isOverAllow){
             //TODOed 保存該次檔案
             String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
+            //clean old log file
+            logFileService.cleanIssueLogFolder();
             logFileService.copyIssueLog(issueLogFolderName);
             //TODOed send notify
             emailService.sendEmailNotify(pendingLogs);

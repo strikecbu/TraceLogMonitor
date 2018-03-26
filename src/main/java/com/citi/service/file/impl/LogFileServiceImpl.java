@@ -120,6 +120,13 @@ public class LogFileServiceImpl implements LogFileService {
         logger.debug("copy temp dir files complete !");
     }
 
+    @Override
+    public void cleanIssueLogFolder() throws IOException {
+        String issueLogFolderPath = this.issueLogFolderPath;
+        File issueFolder = new File(issueLogFolderPath);
+        FileUtils.cleanDirectory(issueFolder);
+    }
+
     private String getFilePattern(){
         //ex: trace.log
         //ex: trace_17.10.11_11.29.06.log
