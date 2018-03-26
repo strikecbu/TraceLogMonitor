@@ -1,0 +1,323 @@
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 18:37:22|YAJSW: yajsw-stable-12.11
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 18:37:22|OS   : Windows 8.1/6.3/x86
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 18:37:22|JVM  : Oracle Corporation/1.8.0_151/C:\Program Files\Java\jre1.8.0_151/32
+INFO|wrapper|TestLongMonitorTitle|18-01-04 18:37:23|started process with pid 1448
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:24|[INFO] StandardFileSystemManager - Using "C:\Users\IEUser\AppData\Local\Temp\vfs_cache" as temporary files store.
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:24|2018-01-04 18:37:24,886 DEBUG com.citi.App.main(App.java:30) - monitor start ...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:24|2018-01-04 18:37:24,886 DEBUG com.citi.App.loadProperties(App.java:79) - loading prod properties...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|2018-01-04 18:37:24,886 DEBUG com.citi.App.loadProperties(App.java:82) - loading prod success!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|2018-01-04 18:37:24,901 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:62) - sending notify mail...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|2018-01-04 18:37:24,901 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:66) - sending mail to : andy.chen@iisigroup.com
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|2018-01-04 18:37:24,917 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:54) - [CCEmailServiceImpl] @ mail.smtp.host >> smtp.gmail.com
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|DEBUG: setDebug: JavaMail version 1.4.7
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|2018-01-04 18:37:24,995 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:98) - [CCConfirmPageServiceImpl] @ emailing orgStr >>monitor is on! You are in notify group!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|DEBUG: getProvider() returning javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle]
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|DEBUG SMTP: useEhlo true, useAuth true
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|DEBUG SMTP: useEhlo true, useAuth true
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:25|DEBUG SMTP: trying to connect to host "smtp.gmail.com", port 465, isSSL false
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|220 smtp.gmail.com ESMTP g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: connected to host "smtp.gmail.com", port: 465
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|EHLO 10.0.2.15
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-smtp.gmail.com at your service, [118.163.110.115]
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-SIZE 35882577
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-8BITMIME
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-ENHANCEDSTATUSCODES
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-PIPELINING
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250-CHUNKING
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250 SMTPUTF8
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "SIZE", arg "35882577"
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "8BITMIME", arg ""
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "ENHANCEDSTATUSCODES", arg ""
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "PIPELINING", arg ""
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "CHUNKING", arg ""
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Found extension "SMTPUTF8", arg ""
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM 
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: AUTH LOGIN command trace suppressed
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: AUTH LOGIN succeeded
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|DEBUG SMTP: use8bit false
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|MAIL FROM:<citi@imta.citicorp.com>
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|250 2.1.0 OK g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:26|RCPT TO:<andy.chen@iisigroup.com>
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|250 2.1.5 OK g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|DEBUG SMTP: Verified Addresses
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|DEBUG SMTP:   andy.chen@iisigroup.com
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|DATA
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|354  Go ahead g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Date: Thu, 4 Jan 2018 18:37:24 -0800 (PST)
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|From: =?BIG5?B?quG6WKFdpXjGV6Feu8im5g==?= <citi@imta.citicorp.com>
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|To: andy.chen@iisigroup.com
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Message-ID: <19040550.1.1515119845104.JavaMail.javamailuser@localhost>
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Subject: COLA server warning system on!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|MIME-Version: 1.0
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Content-Type: multipart/mixed; boundary="----=_Part_0_724552.1515119844979"
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|------=_Part_0_724552.1515119844979
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Content-Type: text/plain;charset=utf-8
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|Content-Transfer-Encoding: 7bit
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|monitor is on! You are in notify group!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|------=_Part_0_724552.1515119844979--
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:27|.
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|250 2.0.0 OK 1515119843 g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|QUIT
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|221 2.0.0 closing connection g19sm9597514pfb.65 - gsmtp
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:74) - sending notify mail complete!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.App.run(App.java:51) - now start a new scan...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:82) - folderPath: C:/Users/IEUser/Desktop/TEST_JAR/TestLogFolder
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:83) - tempFolderPath: ./Temp/
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:46) - AbsolutePath : C:\Users\IEUser\Desktop\TEST_JAR\TestLogFolder
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:60) - file checking...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:73) - [snapShotTargetFile] file checking complete!
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:87) - scanning log file...
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|0
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:102) - pending files count: 0
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:37:28|2018-01-04 18:37:28,198 DEBUG com.citi.App.run(App.java:53) - all process done! waiting next...
+INFO|wrapper|TestLongMonitorTitle|18-01-04 18:38:22|Shutting down Wrapper
+INFO|wrapper|TestLongMonitorTitle|18-01-04 18:38:22|stopping process with pid/timeout 1448 45000
+INFO|1448/0|TestLongMonitorTitle|18-01-04 18:38:23|wrapper manager received stop command
+INFO|wrapper|TestLongMonitorTitle|18-01-04 18:38:24|shutdown wrapper due to exit code rule
+INFO|wrapper|TestLongMonitorTitle|18-01-04 18:38:24|process exit code: 0
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:00:04|YAJSW: yajsw-stable-12.11
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:00:04|OS   : Windows 8.1/6.3/x86
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:00:04|JVM  : Oracle Corporation/1.8.0_151/C:\Program Files\Java\jre1.8.0_151/32
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:00:05|started process with pid 3536
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|[INFO] StandardFileSystemManager - Using "C:\Users\IEUser\AppData\Local\Temp\vfs_cache" as temporary files store.
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,463 DEBUG com.citi.App.main(App.java:30) - monitor start ...
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,510 DEBUG com.citi.App.loadProperties(App.java:79) - loading prod properties...
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,510 DEBUG com.citi.App.loadProperties(App.java:82) - loading prod success!
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,525 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:62) - sending notify mail...
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,525 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:66) - sending mail to : andy.chen@iisigroup.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,525 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:54) - [CCEmailServiceImpl] @ mail.smtp.host >> smtp.gmail.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|DEBUG: setDebug: JavaMail version 1.4.7
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|2018-01-04 19:00:06,572 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:98) - [CCConfirmPageServiceImpl] @ emailing orgStr >>monitor is on! You are in notify group!
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|DEBUG: getProvider() returning javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle]
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|DEBUG SMTP: useEhlo true, useAuth true
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|DEBUG SMTP: useEhlo true, useAuth true
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:06|DEBUG SMTP: trying to connect to host "smtp.gmail.com", port 465, isSSL false
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|220 smtp.gmail.com ESMTP m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: connected to host "smtp.gmail.com", port: 465
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|EHLO 10.0.2.15
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-smtp.gmail.com at your service, [118.163.110.115]
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-SIZE 35882577
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-8BITMIME
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-ENHANCEDSTATUSCODES
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-PIPELINING
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250-CHUNKING
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|250 SMTPUTF8
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "SIZE", arg "35882577"
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "8BITMIME", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "ENHANCEDSTATUSCODES", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "PIPELINING", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "CHUNKING", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Found extension "SMTPUTF8", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM 
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:07|DEBUG SMTP: AUTH LOGIN command trace suppressed
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|DEBUG SMTP: AUTH LOGIN succeeded
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|DEBUG SMTP: use8bit false
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|MAIL FROM:<citi@imta.citicorp.com>
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|250 2.1.0 OK m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|RCPT TO:<andy.chen@iisigroup.com>
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|250 2.1.5 OK m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|DEBUG SMTP: Verified Addresses
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|DEBUG SMTP:   andy.chen@iisigroup.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:08|DATA
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|354  Go ahead m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Date: Thu, 4 Jan 2018 19:00:06 -0800 (PST)
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|From: =?BIG5?B?quG6WKFdpXjGV6Feu8im5g==?= <citi@imta.citicorp.com>
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|To: andy.chen@iisigroup.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Message-ID: <30753909.1.1515121206603.JavaMail.javamailuser@localhost>
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Subject: COLA server warning system on!
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|MIME-Version: 1.0
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Content-Type: multipart/mixed; 
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	boundary="----=_Part_0_20836656.1515121206557"
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|------=_Part_0_20836656.1515121206557
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Content-Type: text/plain;charset=utf-8
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|Content-Transfer-Encoding: 7bit
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|monitor is on! You are in notify group!
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|------=_Part_0_20836656.1515121206557--
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|.
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250 2.0.0 OK 1515121205 m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|QUIT
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|221 2.0.0 closing connection m21sm8298157pgn.36 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,650 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:74) - sending notify mail complete!
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,650 DEBUG com.citi.App.run(App.java:51) - now start a new scan...
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:82) - folderPath: C:/Users/IEUser/Desktop/TEST_JAR/TestLogFolder
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:83) - tempFolderPath: ./Temp/
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:46) - AbsolutePath : C:\Users\IEUser\Desktop\TEST_JAR\TestLogFolder
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:62) - sending notify mail...
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:66) - sending mail to : andy.chen@iisigroup.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:54) - [CCEmailServiceImpl] @ mail.smtp.host >> smtp.gmail.com
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG: setDebug: JavaMail version 1.4.7
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|2018-01-04 19:00:09,666 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:98) - [CCConfirmPageServiceImpl] @ emailing orgStr >>monitor was down! See what happened: 
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|java.io.FileNotFoundException
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	at com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:48)
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	at com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:84)
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	at com.citi.App.scanProcess(App.java:62)
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	at com.citi.App.run(App.java:52)
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|	at java.lang.Thread.run(Unknown Source)
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:00:09|executed script: scripts/trayMessage.gv 1
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG: getProvider() returning javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle]
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG SMTP: useEhlo true, useAuth true
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG SMTP: useEhlo true, useAuth true
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG SMTP: trying to connect to host "smtp.gmail.com", port 465, isSSL false
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|220 smtp.gmail.com ESMTP r13sm10935366pfl.157 - gsmtp
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|DEBUG SMTP: connected to host "smtp.gmail.com", port: 465
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|EHLO 10.0.2.15
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-smtp.gmail.com at your service, [118.163.110.115]
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-SIZE 35882577
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-8BITMIME
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-ENHANCEDSTATUSCODES
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:09|250-PIPELINING
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|250-CHUNKING
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|250 SMTPUTF8
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "SIZE", arg "35882577"
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "8BITMIME", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "ENHANCEDSTATUSCODES", arg ""
+INFO|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "PIPELINING", arg ""
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "CHUNKING", arg ""
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Found extension "SMTPUTF8", arg ""
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM 
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: AUTH LOGIN command trace suppressed
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: AUTH LOGIN succeeded
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: use8bit false
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|MAIL FROM:<citi@imta.citicorp.com>
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|250 2.1.0 OK r13sm10935366pfl.157 - gsmtp
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|RCPT TO:<andy.chen@iisigroup.com>
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|250 2.1.5 OK r13sm10935366pfl.157 - gsmtp
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP: Verified Addresses
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DEBUG SMTP:   andy.chen@iisigroup.com
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:10|DATA
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|354  Go ahead r13sm10935366pfl.157 - gsmtp
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Date: Thu, 4 Jan 2018 19:00:09 -0800 (PST)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|From: =?BIG5?B?quG6WKFdpXjGV6Feu8im5g==?= <citi@imta.citicorp.com>
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|To: andy.chen@iisigroup.com
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Message-ID: <6345033.3.1515121209666.JavaMail.javamailuser@localhost>
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Subject: COLA server warning system down!
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|MIME-Version: 1.0
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Content-Type: multipart/mixed; 
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	boundary="----=_Part_2_23721599.1515121209666"
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|------=_Part_2_23721599.1515121209666
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Content-Type: text/plain;charset=utf-8
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|Content-Transfer-Encoding: 7bit
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|monitor was down! See what happened: 
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|java.io.FileNotFoundException
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:48)
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:00:11|executed script: scripts/trayMessage.gv 1
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:84)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.App.scanProcess(App.java:62)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.App.run(App.java:52)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at java.lang.Thread.run(Unknown Source)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|------=_Part_2_23721599.1515121209666--
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|.
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|250 2.0.0 OK 1515121207 r13sm10935366pfl.157 - gsmtp
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|QUIT
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|221 2.0.0 closing connection r13sm10935366pfl.157 - gsmtp
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|2018-01-04 19:00:11,682 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:74) - sending notify mail complete!
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|2018-01-04 19:00:11,682 ERROR com.citi.App.errorProcess(App.java:106) - java.io.FileNotFoundException
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:48)
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:00:11|executed script: scripts/trayMessage.gv 1
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:84)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.App.scanProcess(App.java:62)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at com.citi.App.run(App.java:52)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|	at java.lang.Thread.run(Unknown Source)
+FINEST|3536/0|TestLongMonitorTitle|18-01-04 19:00:11|
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:01:08|YAJSW: yajsw-stable-12.11
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:01:08|OS   : Windows 8.1/6.3/x86
+WARNING|wrapper|TestLongMonitorTitle|18-01-04 19:01:08|JVM  : Oracle Corporation/1.8.0_151/C:\Program Files\Java\jre1.8.0_151/32
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:01:09|started process with pid 2972
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:09|[INFO] StandardFileSystemManager - Using "C:\Users\IEUser\AppData\Local\Temp\vfs_cache" as temporary files store.
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:09|2018-01-04 19:01:09,729 DEBUG com.citi.App.main(App.java:30) - monitor start ...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:09|2018-01-04 19:01:09,776 DEBUG com.citi.App.loadProperties(App.java:79) - loading prod properties...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:09|2018-01-04 19:01:09,776 DEBUG com.citi.App.loadProperties(App.java:82) - loading prod success!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|2018-01-04 19:01:09,839 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:62) - sending notify mail...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|2018-01-04 19:01:09,839 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:66) - sending mail to : andy.chen@iisigroup.com
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|2018-01-04 19:01:09,839 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:54) - [CCEmailServiceImpl] @ mail.smtp.host >> smtp.gmail.com
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG: setDebug: JavaMail version 1.4.7
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|2018-01-04 19:01:09,885 DEBUG com.citi.service.email.impl.CCSimpleEmailServiceImpl.processEMail(CCSimpleEmailServiceImpl.java:98) - [CCConfirmPageServiceImpl] @ emailing orgStr >>monitor is on! You are in notify group!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG: getProvider() returning javax.mail.Provider[TRANSPORT,smtp,com.sun.mail.smtp.SMTPTransport,Oracle]
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: useEhlo true, useAuth true
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: useEhlo true, useAuth true
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: trying to connect to host "smtp.gmail.com", port 465, isSSL false
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|220 smtp.gmail.com ESMTP w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: connected to host "smtp.gmail.com", port: 465
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|EHLO 10.0.2.15
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-smtp.gmail.com at your service, [118.163.110.115]
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-SIZE 35882577
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-8BITMIME
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-ENHANCEDSTATUSCODES
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-PIPELINING
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250-CHUNKING
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|250 SMTPUTF8
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "SIZE", arg "35882577"
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "8BITMIME", arg ""
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "AUTH", arg "LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "ENHANCEDSTATUSCODES", arg ""
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "PIPELINING", arg ""
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "CHUNKING", arg ""
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Found extension "SMTPUTF8", arg ""
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: Attempt to authenticate using mechanisms: LOGIN PLAIN DIGEST-MD5 NTLM 
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:10|DEBUG SMTP: AUTH LOGIN command trace suppressed
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|DEBUG SMTP: AUTH LOGIN succeeded
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|DEBUG SMTP: use8bit false
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|MAIL FROM:<citi@imta.citicorp.com>
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|250 2.1.0 OK w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|RCPT TO:<andy.chen@iisigroup.com>
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|250 2.1.5 OK w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|DEBUG SMTP: Verified Addresses
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|DEBUG SMTP:   andy.chen@iisigroup.com
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|DATA
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|354  Go ahead w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Date: Thu, 4 Jan 2018 19:01:09 -0800 (PST)
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|From: =?BIG5?B?quG6WKFdpXjGV6Feu8im5g==?= <citi@imta.citicorp.com>
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|To: andy.chen@iisigroup.com
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Message-ID: <19933876.1.1515121269901.JavaMail.javamailuser@localhost>
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Subject: COLA server warning system on!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|MIME-Version: 1.0
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Content-Type: multipart/mixed; 
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|	boundary="----=_Part_0_14648916.1515121269885"
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|------=_Part_0_14648916.1515121269885
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Content-Type: text/plain;charset=utf-8
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|Content-Transfer-Encoding: 7bit
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|monitor is on! You are in notify group!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|------=_Part_0_14648916.1515121269885--
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:11|.
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|250 2.0.0 OK 1515121267 w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|QUIT
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|221 2.0.0 closing connection w73sm9626803pfd.86 - gsmtp
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.email.impl.EmailServiceImpl.sendEmailNotify(EmailServiceImpl.java:74) - sending notify mail complete!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.App.run(App.java:51) - now start a new scan...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:82) - folderPath: C:/IISI/TestLogFolder
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:83) - tempFolderPath: ./Temp/
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:46) - AbsolutePath : C:\IISI\TestLogFolder
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:60) - file checking...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.snapShotTargetFile(LogFileServiceImpl.java:73) - [snapShotTargetFile] file checking complete!
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:87) - scanning log file...
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|0
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.service.file.impl.LogFileServiceImpl.scaningLog(LogFileServiceImpl.java:102) - pending files count: 0
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:12|2018-01-04 19:01:12,495 DEBUG com.citi.App.run(App.java:53) - all process done! waiting next...
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:01:15|Shutting down Wrapper
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:01:15|stopping process with pid/timeout 2972 45000
+INFO|2972/0|TestLongMonitorTitle|18-01-04 19:01:15|wrapper manager received stop command
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:01:16|shutdown wrapper due to exit code rule
+INFO|wrapper|TestLongMonitorTitle|18-01-04 19:01:17|process exit code: 0
