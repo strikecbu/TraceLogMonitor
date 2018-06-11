@@ -124,7 +124,8 @@ public class LogFileServiceImpl implements LogFileService {
     public void cleanIssueLogFolder() throws IOException {
         String issueLogFolderPath = this.issueLogFolderPath;
         File issueFolder = new File(issueLogFolderPath);
-        FileUtils.cleanDirectory(issueFolder);
+        if(issueFolder.exists() && issueFolder.isDirectory())
+            FileUtils.cleanDirectory(issueFolder);
     }
 
     private String getFilePattern(){
