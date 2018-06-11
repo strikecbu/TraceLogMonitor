@@ -68,7 +68,7 @@
         </executions>
         <configuration>
           <descriptor>src/assembly/sample.xml</descriptor>
-          <finalName>IISI_transLogMonitor_pack-${pom.version}</finalName>
+          <finalName>transLogMonitor_pack-${pom.version}</finalName>
         </configuration>
       </plugin>
     </plugins>
