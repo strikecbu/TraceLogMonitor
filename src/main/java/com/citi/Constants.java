@@ -22,7 +22,8 @@ public interface Constants {
     String TEMP_FOLDER_PATH = "tempFolderPath";
     String ISSUE_LOG_FOLDER_PATH = "issueLogFolderPath";
 //    pendingLimit
-    String ALLOW_PENDING_LIMIT = "allowPendingLimit";
+    String ALLOW_PENDING_LIMIT_NUMBER = "allowPendingLimit";
+    String ALLOW_PENDING_LIMIT_TIME = "allowPendingTimeLimit";
     String EMAIL_SEND_TARGETS = "emailSendTargets";
     String SMS_SEND_TARGETS = "smsSendTargets";
 

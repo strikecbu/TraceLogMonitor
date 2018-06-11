@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -66,20 +67,44 @@ public class App implements Runnable{
     private void scanProcess() throws IOException {
         List<PendingLog> pendingLogs = logFileService.scaningLog();
         int count = pendingLogs.size();
-        int allowLimit = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT));
-        boolean isOverAllow = count > allowLimit;
+        int allowLimitCount = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_NUMBER));
+        int allowLimitTime = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_TIME));
+        boolean isOverAllowCount = count > allowLimitCount;
 
-        if(isOverAllow){
-            //TODOed 保存該次檔案
-            String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
-            //clean old log file
-            logFileService.cleanIssueLogFolder();
-            logFileService.copyIssueLog(issueLogFolderName);
-            //TODOed send notify
-            emailService.sendEmailNotify(pendingLogs);
-            // send sms notffy
-            smsService.sendSms(pendingLogs);
+        if(isOverAllowCount) {
+            this.processAlert(pendingLogs);
+            return;
         }
+        //判斷是否有thread pending time超過
+        List<PendingLog> overPendingTimeLogs = getOverPendingTimeLogs(pendingLogs, allowLimitTime);
+        if(overPendingTimeLogs.size() > 0) {
+            this.processAlert(overPendingTimeLogs);
+        }
+    }
+    private void processAlert(List<PendingLog> pendingLogs) throws IOException {
+        //TODOed 保存該次檔案
+        String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
+        //clean old log file
+        logFileService.cleanIssueLogFolder();
+        logFileService.copyIssueLog(issueLogFolderName);
+        //TODOed send notify
+        emailService.sendEmailNotify(pendingLogs);
+        // send sms notffy
+        smsService.sendSms(pendingLogs);
+    }
+
+    private List<PendingLog> getOverPendingTimeLogs(List<PendingLog> originalLogs, int allowSec) {
+        List<PendingLog> result = new ArrayList<>();
+        for (PendingLog pendingLog : originalLogs) {
+            try {
+                int logPendingTime = Integer.parseInt(pendingLog.getInuseSec());
+                if(logPendingTime > allowSec)
+                    result.add(pendingLog);
+            } catch (NumberFormatException e) {
+                //just skip this record...
+            }
+        }
+        return result;
     }
 
     private void loadProperties(){

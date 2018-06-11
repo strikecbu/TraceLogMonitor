@@ -89,6 +89,7 @@ public class LogFileServiceImpl implements LogFileService {
         List<PendingLog> pendings = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
         String timeStamp = format.format(new Date());
+        int maxPendingTime = 0;
         //TODOed 組裝POJO
         for(String key : scanresult.keySet()){
             Map<String, String> map = scanresult.get(key);
@@ -97,9 +98,20 @@ public class LogFileServiceImpl implements LogFileService {
             pendingLog.setStartTime(map.get(ParserTrace.START_TIME));
             pendingLog.setInuseSec(map.get(ParserTrace.PENDING_TIME));
             pendingLog.setIssueLogFolderName(timeStamp);
+            int inuseSec;
+            try {
+                inuseSec = Integer.parseInt(map.get(ParserTrace.PENDING_TIME));
+                if(inuseSec > maxPendingTime) {
+                    maxPendingTime = inuseSec;
+                }
+            } catch (NumberFormatException e) {
+                // do nothing...
+            }
             pendings.add(pendingLog);
         }
-        logger.debug("pending files count: " + pendings.size());
+        if(maxPendingTime > 0)
+            logger.debug("max thread pending time: " + maxPendingTime + " sec");
+        logger.debug("pending threads count: " + pendings.size());
 
         return pendings;
     }
