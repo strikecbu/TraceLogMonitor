@@ -2,12 +2,14 @@ package com.citi.service.email.impl;
 
 import com.citi.Constants;
 import com.citi.model.PendingLog;
+import com.citi.model.SpecialSearch;
 import com.citi.service.email.CCSimpleEmailService;
 import com.citi.service.email.EmailService;
 import com.citi.util.CapString;
 import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -50,13 +52,46 @@ public class EmailServiceImpl implements EmailService{
         }
         return stringBuilder.toString();
     }
+    @Override
+    public String getMessageContent(Map<SpecialSearch, List<String>> logsMap){
+        final String NEXT_LINE = "\n";
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Warning!! SpecialSearch is over allow!!");
+        stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
+        stringBuilder.append("go to issueLog folder and find out what happen!");
+        stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
 
-    public void sendEmailNotify(List<PendingLog> pendingLogs){
-        String message = this.getMessageContent(pendingLogs);
-        String mailTitle = "COLA server over pending warning";
+        for (Map.Entry<SpecialSearch, List<String>> entry : logsMap.entrySet()) {
+            SpecialSearch specialSearch = entry.getKey();
+            List<String> logs = entry.getValue();
+            if(logs.size() == 0) {
+                continue;
+            }
+            stringBuilder.append("Pattern: " + specialSearch.getPattern() + NEXT_LINE);
+            stringBuilder.append("found records following below:" + NEXT_LINE);
+            for (String log : logs) {
+                stringBuilder.append(log + NEXT_LINE);
+            }
+            stringBuilder.append(NEXT_LINE);
+        }
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public void sendEmailNotify(Map<SpecialSearch, List<String>> logsMap){
+        String message = this.getMessageContent(logsMap);
+        String mailTitle = Constants.AlertType.SpecialSearch.getEmailTitle();
         this.sendEmailNotify(mailTitle, message);
     }
 
+    @Override
+    public void sendEmailNotify(List<PendingLog> pendingLogs){
+        String message = this.getMessageContent(pendingLogs);
+        String mailTitle = Constants.AlertType.Pending.getEmailTitle();
+        this.sendEmailNotify(mailTitle, message);
+    }
+
+    @Override
     public void sendEmailNotify(String mailTitle, String message){
         String emailTargets = prop.getProperty(Constants.EMAIL_SEND_TARGETS);
         logger.debug("sending notify mail...");
