@@ -2,14 +2,13 @@ package com.citi.service.file.impl;
 
 import com.citi.Constants;
 import com.citi.model.PendingLog;
+import com.citi.model.SpecialSearch;
 import com.citi.service.file.LogFileService;
 import com.citi.service.log.ParserTrace;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -74,7 +73,7 @@ public class LogFileServiceImpl implements LogFileService {
     }
 
     @Override
-    public List<PendingLog> scaningLog() throws IOException {
+    public void snapShotTraceLog() throws IOException {
         //TODOed 檢查資料夾
         //TODOed 將檔名符合的檔案copy到temp
         String fileSelectRegStr = this.getFilePattern();
@@ -82,7 +81,10 @@ public class LogFileServiceImpl implements LogFileService {
         logger.debug("folderPath: " + this.folderPath);
         logger.debug("tempFolderPath: " + this.tempFolderPath);
         this.snapShotTargetFile(new File(this.folderPath), new File(this.tempFolderPath), pattern);
+    }
 
+    @Override
+    public List<PendingLog> scaningLog() throws IOException {
         //TODOed 掃描temp -> pending log
         logger.debug("scanning log file...");
         Map<String, Map<String, String>> scanresult = parserTrace.dumpWebContainer(tempFolderPath);
@@ -114,6 +116,41 @@ public class LogFileServiceImpl implements LogFileService {
         logger.debug("pending threads count: " + pendings.size());
 
         return pendings;
+    }
+
+    @Override
+    public Map<SpecialSearch, List<String>> scaningLogBySpecialSearch(List<SpecialSearch> searchList) throws IOException {
+        Map<SpecialSearch, List<String>> result = new HashMap<>();
+        File tempFolder = new File(tempFolderPath);
+        if(!tempFolder.exists() || !tempFolder.isDirectory() || tempFolder.listFiles() == null) {
+            return result;
+        }
+
+        for (SpecialSearch specialSearch : searchList) {
+            result.put(specialSearch, new ArrayList<String>());
+        }
+
+        for (File file : Objects.requireNonNull(tempFolder.listFiles())) {
+            try (
+                    FileInputStream fis = new FileInputStream(file);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    BufferedReader bur = new BufferedReader(isr)
+            ) {
+                String line;
+                while ((line = bur.readLine()) != null ) {
+                    for (SpecialSearch specialSearch : searchList) {
+                        Pattern pattern = specialSearch.getPattern();
+                        Matcher matcher = pattern.matcher(line);
+                        if(matcher.find()) {
+                            List<String> logs = result.get(specialSearch);
+                            logs.add(line);
+                        }
+                    }
+                }
+            }
+
+        }
+        return result;
     }
 
     @Override
