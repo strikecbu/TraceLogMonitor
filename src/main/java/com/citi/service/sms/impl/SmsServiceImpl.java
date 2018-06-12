@@ -1,13 +1,11 @@
 package com.citi.service.sms.impl;
 
 import com.citi.Constants;
-import com.citi.model.PendingLog;
 import com.citi.service.sms.OTPService;
 import com.citi.service.sms.SmsService;
 import com.citi.util.CapString;
 import org.apache.log4j.Logger;
 
-import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -43,9 +41,9 @@ public class SmsServiceImpl implements SmsService {
     }
 
     @Override
-    public void sendSms(List<PendingLog> pendingLogs) {
+    public void sendSms(Constants.AlertType alertType) {
         String smsTargets = prop.getProperty(Constants.SMS_SEND_TARGETS);
-        String message = "COLA server over pending warning! please see more info from email.";
+        String message = alertType.getSmsMsg();
         for(String target : smsTargets.split(",")){
             if(CapString.isEmpty(target))
                 continue;

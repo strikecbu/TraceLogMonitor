@@ -1,8 +1,6 @@
 package com.citi.service.sms;
 
-import com.citi.model.PendingLog;
-
-import java.util.List;
+import com.citi.Constants;
 
 /**
  * Created by VALLA on 2018/1/8.
@@ -10,5 +8,5 @@ import java.util.List;
 public interface SmsService {
     void sendSms(String phoneNumber, String message) throws Exception;
 
-    void sendSms(List<PendingLog> pendingLogs);
+    void sendSms(Constants.AlertType alertType);
 }
