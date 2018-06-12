@@ -1,6 +1,7 @@
 package com.citi;
 
 import com.citi.model.PendingLog;
+import com.citi.model.SpecialSearch;
 import com.citi.service.email.EmailService;
 import com.citi.service.email.impl.EmailServiceImpl;
 import com.citi.service.file.LogFileService;
@@ -11,9 +12,9 @@ import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.regex.Pattern;
 
 
 /**
@@ -64,24 +65,66 @@ public class App implements Runnable{
         }
     }
 
+    private List<SpecialSearch> getSpecialSearches() {
+        String prop_patten = Constants.OTHER_PERFIX + "." + Constants.OTHER_PATTERN;
+        String prop_allowCount = Constants.OTHER_PERFIX + "." + Constants.OTHER_ALLOWCOUNT;
+        List<SpecialSearch> result = new ArrayList<>();
+        int maxCount = 100;
+        for (int i = 1; i <= maxCount; i++) {
+            String patternStr = prop.getProperty(prop_patten + i);
+            String allowCountStr = prop.getProperty(prop_allowCount + i);
+            if (patternStr != null && !"".equals(patternStr) && allowCountStr != null && !"".equals(allowCountStr)) {
+                int allowCount = Integer.parseInt(allowCountStr);
+                SpecialSearch specialSearch = new SpecialSearch();
+                Pattern pattern = Pattern.compile(patternStr);
+                specialSearch.setPattern(pattern);
+                specialSearch.setAllowPendingCount(allowCount);
+                result.add(specialSearch);
+                logger.debug("special search set. keyword: " + patternStr + ", allowCount: " + allowCount);
+            }
+        }
+        return result;
+    }
+
     private void scanProcess() throws IOException {
+        logFileService.snapShotTraceLog();
         List<PendingLog> pendingLogs = logFileService.scaningLog();
         int count = pendingLogs.size();
         int allowLimitCount = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_NUMBER));
         int allowLimitTime = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_TIME));
         boolean isOverAllowCount = count > allowLimitCount;
 
+        //TODO special search
+        // 取得other keyword scan settings
+        List<SpecialSearch> specialSearchList = this.getSpecialSearches();
+        Map<SpecialSearch, List<String>> logsMap = logFileService.scaningLogBySpecialSearch(specialSearchList);
+        this.processSpecialSearchAlert(logsMap);
+
         if(isOverAllowCount) {
-            this.processAlert(pendingLogs);
+            this.processPendingAlert(pendingLogs);
             return;
         }
         //判斷是否有thread pending time超過
         List<PendingLog> overPendingTimeLogs = getOverPendingTimeLogs(pendingLogs, allowLimitTime);
         if(overPendingTimeLogs.size() > 0) {
-            this.processAlert(overPendingTimeLogs);
+            this.processPendingAlert(overPendingTimeLogs);
         }
     }
-    private void processAlert(List<PendingLog> pendingLogs) throws IOException {
+
+    private void processSpecialSearchAlert(Map<SpecialSearch, List<String>> logsMap) throws IOException {
+        //TODOed 保存該次檔案
+        SimpleDateFormat format = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
+        String issueLogFolderName = format.format(new Date());
+        //clean old log file
+        logFileService.cleanIssueLogFolder();
+        logFileService.copyIssueLog(issueLogFolderName);
+        //TODOed send notify
+        emailService.sendEmailNotify(logsMap);
+        // send sms notffy
+        smsService.sendSms(Constants.AlertType.SpecialSearch);
+    }
+
+    private void processPendingAlert(List<PendingLog> pendingLogs) throws IOException {
         //TODOed 保存該次檔案
         String issueLogFolderName = pendingLogs.get(0).getIssueLogFolderName();
         //clean old log file
@@ -90,7 +133,7 @@ public class App implements Runnable{
         //TODOed send notify
         emailService.sendEmailNotify(pendingLogs);
         // send sms notffy
-        smsService.sendSms(pendingLogs);
+        smsService.sendSms(Constants.AlertType.Pending);
     }
 
     private List<PendingLog> getOverPendingTimeLogs(List<PendingLog> originalLogs, int allowSec) {
