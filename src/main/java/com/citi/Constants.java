@@ -27,4 +27,33 @@ public interface Constants {
     String EMAIL_SEND_TARGETS = "emailSendTargets";
     String SMS_SEND_TARGETS = "smsSendTargets";
 
+    //special settings
+    String OTHER_PERFIX = "otherScan";
+    String OTHER_PATTERN = "pattern";
+    String OTHER_ALLOWCOUNT = "allowCount";
+
+    enum AlertType {
+        Pending("COLA server over pending warning! please see more info from email.",
+                "COLA server over pending warning"),
+        SpecialSearch("COLA server found special search over limit! please see more info from email.",
+                "COLA server over found keyword warning");
+
+        private String smsMsg;
+
+        private String emailTitle;
+
+        AlertType(String smsMsg, String emailTitle) {
+            this.smsMsg = smsMsg;
+            this.emailTitle = emailTitle;
+        }
+
+        public String getSmsMsg() {
+            return this.smsMsg;
+        }
+
+        public String getEmailTitle() {
+            return this.emailTitle;
+        }
+    }
+
 }
