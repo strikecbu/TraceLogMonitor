@@ -98,7 +98,8 @@ public class App implements Runnable{
         // 取得other keyword scan settings
         List<SpecialSearch> specialSearchList = this.getSpecialSearches();
         Map<SpecialSearch, List<String>> logsMap = logFileService.scaningLogBySpecialSearch(specialSearchList);
-        this.processSpecialSearchAlert(logsMap);
+        if(logsMap.size() > 0)
+            this.processSpecialSearchAlert(logsMap);
 
         if(isOverAllowCount) {
             this.processPendingAlert(pendingLogs);
