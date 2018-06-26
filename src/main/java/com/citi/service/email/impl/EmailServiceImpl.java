@@ -32,7 +32,7 @@ public class EmailServiceImpl implements EmailService{
     public String getMessageContent(List<PendingLog> pendingLogs){
         if(pendingLogs.size() <= 0)
             return "";
-        final String NEXT_LINE = "\n";
+        final String NEXT_LINE = "\n<br/>";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Warning!! Server pending is over allow!!");
         stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
@@ -54,7 +54,7 @@ public class EmailServiceImpl implements EmailService{
     }
     @Override
     public String getMessageContent(Map<SpecialSearch, List<String>> logsMap){
-        final String NEXT_LINE = "\n";
+        final String NEXT_LINE = "\n<br/>";
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Warning!! SpecialSearch is over allow!!");
         stringBuilder.append(NEXT_LINE).append(NEXT_LINE);
@@ -67,8 +67,8 @@ public class EmailServiceImpl implements EmailService{
             if(logs.size() == 0) {
                 continue;
             }
-            stringBuilder.append("Pattern: " + specialSearch.getPattern() + NEXT_LINE);
-            stringBuilder.append("found records following below:" + NEXT_LINE);
+            stringBuilder.append("<h3 style=\"color:red;\">Pattern: " + specialSearch.getPattern() + "</h3>");
+            stringBuilder.append("found records count: " + logs.size() + ", following below:" + NEXT_LINE);
             for (String log : logs) {
                 stringBuilder.append(log + NEXT_LINE);
             }

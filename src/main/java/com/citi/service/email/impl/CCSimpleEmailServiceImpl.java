@@ -90,9 +90,10 @@ public class CCSimpleEmailServiceImpl implements CCSimpleEmailService{
 
       // 如果 subtype = related 代表可以發送 HTML 格式
       MimeMultipart multipart = new MimeMultipart();
+      multipart.setSubType("related");
       // first part
       BodyPart messageBodyPart = new MimeBodyPart();
-      messageBodyPart.setContent(message, "text/plain;charset=utf-8");
+      messageBodyPart.setContent(message, "text/html;charset=utf-8");
       // add it
       multipart.addBodyPart(messageBodyPart);
       logger.debug("[CCConfirmPageServiceImpl] @ emailing orgStr >>" + message);
