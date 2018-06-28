@@ -8,6 +8,7 @@ import com.citi.service.file.LogFileService;
 import com.citi.service.file.impl.LogFileServiceImpl;
 import com.citi.service.sms.SmsService;
 import com.citi.service.sms.impl.SmsServiceImpl;
+import com.citi.util.LogAlertBuffer;
 import org.apache.log4j.Logger;
 
 import java.io.*;
@@ -88,28 +89,38 @@ public class App implements Runnable{
     }
 
     private void scanProcess() throws IOException {
+        LogAlertBuffer.setProp(prop);
         logFileService.snapShotTraceLog();
         List<PendingLog> pendingLogs = logFileService.scaningLog();
         int count = pendingLogs.size();
         int allowLimitCount = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_NUMBER));
         int allowLimitTime = Integer.parseInt(prop.getProperty(Constants.ALLOW_PENDING_LIMIT_TIME));
+        boolean politeMode = "true".equals(prop.getProperty(Constants.POLITE_MODE));
         boolean isOverAllowCount = count > allowLimitCount;
 
         //TODO special search
         // 取得other keyword scan settings
         List<SpecialSearch> specialSearchList = this.getSpecialSearches();
         Map<SpecialSearch, List<String>> logsMap = logFileService.scaningLogBySpecialSearch(specialSearchList);
-        if(logsMap.size() > 0)
-            this.processSpecialSearchAlert(logsMap);
+        if(logsMap.size() > 0) {
+            boolean isNeedSend = !politeMode || LogAlertBuffer.checkSpecialSearch(logsMap);
+            if(isNeedSend)
+                this.processSpecialSearchAlert(logsMap);
+        }
 
         if(isOverAllowCount) {
-            this.processPendingAlert(pendingLogs);
-            return;
+            boolean isNeedSend = !politeMode || LogAlertBuffer.checkPendingCount(pendingLogs);
+            if(isNeedSend) {
+                this.processPendingAlert(pendingLogs);
+                return;
+            }
         }
         //判斷是否有thread pending time超過
         List<PendingLog> overPendingTimeLogs = getOverPendingTimeLogs(pendingLogs, allowLimitTime);
         if(overPendingTimeLogs.size() > 0) {
-            this.processPendingAlert(overPendingTimeLogs);
+            boolean isNeedSend = !politeMode || LogAlertBuffer.checkPendingOvertime(overPendingTimeLogs);
+            if(isNeedSend)
+                this.processPendingAlert(overPendingTimeLogs);
         }
     }
 

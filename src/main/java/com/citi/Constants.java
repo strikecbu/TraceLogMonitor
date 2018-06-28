@@ -16,6 +16,7 @@ public interface Constants {
 
 //  # Log scan
     String INTERVAL_TIME = "intervalTime";
+    String POLITE_MODE = "politeMode";
 //    scan time
     //    log path
     String LOG_FOLDER_PATH = "logFolderPath";
