@@ -55,6 +55,7 @@ public class App implements Runnable{
             String message = "monitor is on! You are in notify group!";
             emailService.sendEmailNotify(mailTitle, message);
             while (true){
+                this.loadProperties();
                 logger.debug("now start a new scan...");
                 this.scanProcess();
                 logger.debug("all process done! waiting next...");
@@ -161,7 +162,6 @@ public class App implements Runnable{
                 return;
             } catch (IOException e) {
                 logger.error("can not read config.properties in Prod!", e);
-                e.printStackTrace();
             }
         }
         URL resource = Thread.currentThread().getContextClassLoader().getResource("config.properties");

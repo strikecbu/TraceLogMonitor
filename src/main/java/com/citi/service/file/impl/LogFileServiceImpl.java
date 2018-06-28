@@ -150,10 +150,16 @@ public class LogFileServiceImpl implements LogFileService {
             }
 
         }
-        for (Map.Entry<SpecialSearch, List<String>> entry : result.entrySet()) {
+        Set<Map.Entry<SpecialSearch, List<String>>> entriesSet = result.entrySet();
+        Iterator<Map.Entry<SpecialSearch, List<String>>> iterator = entriesSet.iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<SpecialSearch, List<String>> entry = iterator.next();
             String key = entry.getKey().getPattern().toString();
             long size = entry.getValue().size();
-            logger.debug("[scaningLogBySpecialSearch] pattern: " + key + ", total found: " + size);
+            logger.debug("pattern: " + key + ", total found: " + size);
+            if(size == 0) {
+                result.remove(entry.getKey());
+            }
         }
         return result;
     }
