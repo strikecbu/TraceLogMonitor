@@ -80,14 +80,14 @@ public class EmailServiceImpl implements EmailService{
     @Override
     public void sendEmailNotify(Map<SpecialSearch, List<String>> logsMap){
         String message = this.getMessageContent(logsMap);
-        String mailTitle = Constants.AlertType.SpecialSearch.getEmailTitle();
+        String mailTitle = Constants.AlertType.SpecialSearch.getAlertEmailTitle();
         this.sendEmailNotify(mailTitle, message);
     }
 
     @Override
     public void sendEmailNotify(List<PendingLog> pendingLogs){
         String message = this.getMessageContent(pendingLogs);
-        String mailTitle = Constants.AlertType.Pending.getEmailTitle();
+        String mailTitle = Constants.AlertType.Pending.getAlertEmailTitle();
         this.sendEmailNotify(mailTitle, message);
     }
 
@@ -107,6 +107,11 @@ public class EmailServiceImpl implements EmailService{
             }
         }
         logger.debug("sending notify mail complete!");
+    }
+
+    @Override
+    public void sendBackNormalEmail(Constants.AlertType alertType) {
+        this.sendEmailNotify(alertType.getBackToNormalEmailTitle(), alertType.getBackToNormalEmailMsg());
     }
 
 }

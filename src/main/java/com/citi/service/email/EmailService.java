@@ -1,5 +1,6 @@
 package com.citi.service.email;
 
+import com.citi.Constants;
 import com.citi.model.PendingLog;
 import com.citi.model.SpecialSearch;
 
@@ -21,4 +22,5 @@ public interface EmailService {
 
     void sendEmailNotify(String mailTitle, String message);
 
+    void sendBackNormalEmail(Constants.AlertType alertType);
 }

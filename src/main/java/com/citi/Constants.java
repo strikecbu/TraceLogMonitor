@@ -1,7 +1,5 @@
 package com.citi;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
 /**
  * Created by VALLA on 2017/12/28.
  */
@@ -35,26 +33,46 @@ public interface Constants {
 
     enum AlertType {
         Pending("COLA server over pending warning! please see more info from email.",
-                "COLA server over pending warning"),
-        SpecialSearch("COLA server found special search over limit! please see more info from email.",
-                "COLA server over found keyword warning");
+                "COLA server over pending warning",
+                "COLA server over pending back to normal",
+                "Pending situation is back to normal now."),
+        SpecialSearch("COLA server found special search keywords over limit! please see more info from email.",
+                "COLA server over found keyword warning",
+                "COLA server over keyword warning back to normal",
+                "Keywords finding is not over limit now.");
 
-        private String smsMsg;
+        private String alertSmsMsg;
 
-        private String emailTitle;
+        private String alertEmailTitle;
 
-        AlertType(String smsMsg, String emailTitle) {
-            this.smsMsg = smsMsg;
-            this.emailTitle = emailTitle;
+        private String backToNormalEmailTitle;
+
+        private String backToNormalEmailMsg;
+
+        AlertType(String alertSmsMsg, String alertEmailTitle, String backToNormalEmailTitle, String backToNormalEmailMsg) {
+            this.alertSmsMsg = alertSmsMsg;
+            this.alertEmailTitle = alertEmailTitle;
+            this.backToNormalEmailTitle = backToNormalEmailTitle;
+            this.backToNormalEmailMsg = backToNormalEmailMsg;
         }
 
-        public String getSmsMsg() {
-            return this.smsMsg;
+        public String getAlertSmsMsg() {
+            return this.alertSmsMsg;
         }
 
-        public String getEmailTitle() {
-            return this.emailTitle;
+        public String getAlertEmailTitle() {
+            return this.alertEmailTitle;
         }
+
+        public String getBackToNormalEmailTitle() {
+            return this.backToNormalEmailTitle;
+        }
+
+        public String getBackToNormalEmailMsg() {
+            return this.backToNormalEmailMsg;
+        }
+
+
     }
 
 }

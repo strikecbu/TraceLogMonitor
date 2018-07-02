@@ -43,7 +43,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public void sendSms(Constants.AlertType alertType) {
         String smsTargets = prop.getProperty(Constants.SMS_SEND_TARGETS);
-        String message = alertType.getSmsMsg();
+        String message = alertType.getAlertSmsMsg();
         for(String target : smsTargets.split(",")){
             if(CapString.isEmpty(target))
                 continue;

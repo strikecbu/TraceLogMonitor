@@ -29,6 +29,14 @@ public final class LogAlertBuffer {
         LogAlertBuffer.prop = prop;
     }
 
+    public static boolean hasLastAlert(String type) {
+        return records.get(type) != null;
+    }
+
+    public static Map<String, SendRecord> getAllRecords() {
+        return records;
+    }
+
     public static void removeRecord(String type) {
         records.remove(type);
     }
@@ -110,7 +118,7 @@ public final class LogAlertBuffer {
         sendRecord.setLastCount(count);
     }
 
-    private static class SendRecord {
+    public static class SendRecord {
         private long sendTime;
         private int lastCount;
 

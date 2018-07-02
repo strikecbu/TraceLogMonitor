@@ -103,13 +103,15 @@ public class App implements Runnable{
         List<SpecialSearch> specialSearchList = this.getSpecialSearches();
         Map<SpecialSearch, List<String>> logsMap = logFileService.scaningLogBySpecialSearch(specialSearchList);
         if(logsMap.size() > 0) {
-            boolean isNeedSend = !politeMode || LogAlertBuffer.checkSpecialSearch(logsMap);
+            boolean isNeedSend = LogAlertBuffer.checkSpecialSearch(logsMap) || !politeMode;
             if(isNeedSend)
                 this.processSpecialSearchAlert(logsMap);
+        } else {
+            this.processBackToNormalNotify(Constants.AlertType.SpecialSearch);
         }
 
         if(isOverAllowCount) {
-            boolean isNeedSend = !politeMode || LogAlertBuffer.checkPendingCount(pendingLogs);
+            boolean isNeedSend = LogAlertBuffer.checkPendingCount(pendingLogs) || !politeMode;
             if(isNeedSend) {
                 this.processPendingAlert(pendingLogs);
                 return;
@@ -122,6 +124,40 @@ public class App implements Runnable{
             if(isNeedSend)
                 this.processPendingAlert(overPendingTimeLogs);
         }
+        if(!isOverAllowCount && overPendingTimeLogs.size() == 0) {
+            this.processBackToNormalNotify(Constants.AlertType.Pending);
+        }
+    }
+
+    private void processBackToNormalNotify(Constants.AlertType alertType) {
+        if(Constants.AlertType.Pending.equals(alertType)) {
+            boolean needSend = false;
+            if(LogAlertBuffer.hasLastAlert(LogAlertBuffer.PENDING_COUNT)) {
+                LogAlertBuffer.removeRecord(LogAlertBuffer.PENDING_COUNT);
+                needSend = true;
+            }
+            if(LogAlertBuffer.hasLastAlert(LogAlertBuffer.PENDING_OVERTIME)) {
+                LogAlertBuffer.removeRecord(LogAlertBuffer.PENDING_OVERTIME);
+                needSend = true;
+            }
+            if(needSend)
+                emailService.sendBackNormalEmail(Constants.AlertType.Pending);
+        } else if(Constants.AlertType.SpecialSearch.equals(alertType)){
+            Map<String, LogAlertBuffer.SendRecord> allRecords = LogAlertBuffer.getAllRecords();
+            Iterator<String> iterator = allRecords.keySet().iterator();
+            boolean needSend = false;
+            while(iterator.hasNext()) {
+                String key = iterator.next();
+                if(LogAlertBuffer.PENDING_COUNT.equals(key) || LogAlertBuffer.PENDING_OVERTIME.equals(key))
+                    continue;
+                needSend = true;
+                iterator.remove();
+            }
+            if(needSend)
+                emailService.sendBackNormalEmail(Constants.AlertType.SpecialSearch);
+        }
+
+
     }
 
     private void processSpecialSearchAlert(Map<SpecialSearch, List<String>> logsMap) throws IOException {
