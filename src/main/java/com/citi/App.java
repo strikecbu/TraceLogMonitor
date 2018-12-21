@@ -50,21 +50,21 @@ public class App implements Runnable{
     @Override
     public void run() {
         String scanTime = prop.getProperty(Constants.INTERVAL_TIME);
-        try {
             long mills = Long.parseLong(scanTime) * 60 * 1000;
             String mailTitle = "COLA server warning system on!";
             String message = "monitor is on! You are in notify group!";
             emailService.sendEmailNotify(mailTitle, message);
-            while (true){
-                this.loadProperties();
-                logger.debug("now start a new scan...");
-                this.scanProcess();
-                logger.debug("all process done! waiting next...");
-                Thread.sleep(mills);
+            while (true) {
+                try {
+                    this.loadProperties();
+                    logger.debug("now start a new scan...");
+                    this.scanProcess();
+                    logger.debug("all process done! waiting next...");
+                    Thread.sleep(mills);
+                } catch (Exception e) {
+                    this.errorProcess(e);
+                }
             }
-        } catch (Exception e) {
-            this.errorProcess(e);
-        }
     }
 
     private List<SpecialSearch> getSpecialSearches() {
@@ -225,7 +225,7 @@ public class App implements Runnable{
         PrintWriter pw = new PrintWriter(sw);
         e.printStackTrace(pw);
         String errorMsg = sw.toString();
-        String message = "monitor was down! See what happened: \n\n";
+        String message = "monitor was hint error! See what happened: \n\n";
         String mailTitle = "COLA server warning system down!";
         emailService.sendEmailNotify(mailTitle, message.concat(errorMsg));
         logger.error(errorMsg);
